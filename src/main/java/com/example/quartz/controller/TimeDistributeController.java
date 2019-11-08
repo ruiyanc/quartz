@@ -29,7 +29,7 @@ public class TimeDistributeController {
     @Autowired
     private LogService logService;
 
-    public static final String path = "/home/yanrui/";
+    public static final String PATH = "/htht/logs/workspace/Java/logs/";
 
     //定时爬虫
     @GetMapping("shell")
@@ -49,19 +49,16 @@ public class TimeDistributeController {
 
     @GetMapping("findLog")
     public void findLog() {
-        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        File file = new File(path + File.separatorChar + date + File.separatorChar + "warn.log");
-//        File file = new File(".."+File.separatorChar+"untitled"+File.separatorChar+"test.txt");
+        String date = new SimpleDateFormat("yyyy-MM-dd HH").format(new Date());
+        File file = new File(PATH  + date + "/" + "warn.log");
         /*JDK7新特性可以在try后的括号中定义变量，并使用后系统自动关闭流对象*/
 //        BufferedWriter 字符缓冲输出流
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             //readLine()读取一行字符数据
             while ((line = br.readLine()) != null) {
-//                String substring = line.substring(line.indexOf("-") + 1);
                 Object[] list = line.split(",");
                 logService.insertLog(list);
-                System.out.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,7 +106,7 @@ public class TimeDistributeController {
         jsonObject.put("requestType", "GET");
         jsonObject.put("url", "http://localhost:8111/findLog");
         jsonObject.put("params", "");
-        jsonObject.put("cronExpression", "0 40 */1 * * ?");
+        jsonObject.put("cronExpression", "0 30 */1 * * ?");
         HttpClientUtil.postJson("http://localhost:8111/quartz/httpJob/add", jsonObject.toString());
         return "success";
     }

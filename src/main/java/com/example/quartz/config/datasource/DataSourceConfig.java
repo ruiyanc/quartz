@@ -6,7 +6,6 @@ import com.alibaba.druid.wall.WallConfig;
 import com.alibaba.druid.wall.WallFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
@@ -20,7 +19,7 @@ import java.util.List;
  * @author hellofly
  * @date 2019/4/9
  */
-@Configuration
+//@Configuration
 public class DataSourceConfig {
 
     @Value("${spring.datasource.url}")

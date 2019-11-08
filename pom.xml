@@ -75,14 +75,12 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.6</version>
         </dependency>
-
         <!-- commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.8.1</version>
         </dependency>
-
         <!-- fastJson -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -105,6 +103,13 @@
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>2.9.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gbase.ifxjdbc</groupId>  <!--自定义-->
+            <artifactId>ifxjdbc</artifactId>    <!--自定义-->
+            <version>1.0</version> <!--自定义-->
+            <scope>system</scope> <!--system，类似provided，需要显式提供依赖的jar以后，Maven就不会在Repository中查找它-->
+            <systemPath>${basedir}/src/main/resources/ifxjdbc.jar</systemPath> <!--项目根目录下的lib文件夹下-->
         </dependency>
 
 

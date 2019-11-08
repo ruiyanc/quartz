@@ -81,6 +81,7 @@
     </resultMap>
 
     <select id="selectHttpJobs" resultMap="HttpJobDetailMap">
+        SELECT * from (
         SELECT
         t.JOB_NAME,
         t.JOB_GROUP,
@@ -89,7 +90,8 @@
         hd.HTTP_URL,
         hd.HTTP_PARAMS,
         hd.CREATE_TIME,
-        ct.CRON_EXPRESSION
+        ct.CRON_EXPRESSION,
+        row_number() over(ORDER BY id asc) rn
         FROM
         QRTZ_TRIGGERS t
         LEFT JOIN QRTZ_CRON_TRIGGERS ct ON ( t.TRIGGER_NAME = ct.TRIGGER_NAME AND t.TRIGGER_GROUP = ct.TRIGGER_GROUP )
@@ -99,9 +101,10 @@
         <if test="searchParam != null and searchParam != ''">
             AND ( t.JOB_NAME LIKE concat('%',#{searchParam},'%') OR t.JOB_GROUP LIKE concat('%',#{searchParam},'%') )
         </if>
-        ORDER BY hd.ID DESC
+        ORDER BY hd.ID DESC )
         <if test="beginIndex != null and pageSize!=null">
-            limit #{beginIndex},#{pageSize}
+<!--            limit #{beginIndex},#{pageSize}-->
+            WHERE rn BETWEEN (#{beginIndex} - 1) * #{pageSize} + 1 AND #{beginIndex} * #{pageSize}
         </if>
     </select>
 
@@ -120,6 +123,7 @@
     </select>
 
     <select id="selectHistoryHttpJobs" resultMap="HttpJobDetailMap">
+        SELECT * from (
         SELECT
         hd.JOB_NAME,
         hd.JOB_GROUP,
@@ -127,7 +131,8 @@
         hd.REQUEST_TYPE,
         hd.HTTP_URL,
         hd.HTTP_PARAMS,
-        hd.CREATE_TIME
+        hd.CREATE_TIME,
+        row_number() over(ORDER BY id asc) rn
         FROM
         HTTPJOB_DETAILS hd
         LEFT JOIN QRTZ_TRIGGERS qt ON ( hd.JOB_NAME = qt.JOB_NAME AND hd.JOB_GROUP = qt.JOB_GROUP )
@@ -136,9 +141,10 @@
         <if test="searchParam != null and searchParam != ''">
             AND ( hd.JOB_NAME LIKE concat('%',#{searchParam},'%') OR hd.JOB_GROUP LIKE concat('%',#{searchParam},'%') )
         </if>
-        ORDER BY hd.ID DESC
+        ORDER BY hd.ID DESC )
         <if test="beginIndex != null and pageSize!=null">
-            limit #{beginIndex},#{pageSize}
+<!--            limit #{beginIndex},#{pageSize}-->
+            WHERE rn BETWEEN (#{beginIndex} - 1) * #{pageSize} + 1 AND #{beginIndex} * #{pageSize}
         </if>
     </select>
 

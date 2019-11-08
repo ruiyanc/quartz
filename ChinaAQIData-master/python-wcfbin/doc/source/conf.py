@@ -14,9 +14,9 @@
 import sys, os
 
 # If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('.'))
+# add these directories to sys.PATH here. If the directory is relative to the
+# documentation root, use os.PATH.abspath to make it absolute, like shown here.
+#sys.PATH.insert(0, os.PATH.abspath('.'))
 sys.path.insert(0, os.path.abspath('../..'))
 
 # -- General configuration -----------------------------------------------------
@@ -116,7 +116,7 @@ html_theme = 'default'
 # of the sidebar.
 #html_logo = None
 
-# The name of an image file (within the static path) to use as favicon of the
+# The name of an image file (within the static PATH) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 #html_favicon = None
@@ -243,11 +243,11 @@ epub_copyright = u'2011, Timo Schmid'
 #epub_uid = ''
 
 # HTML files that should be inserted before the pages created by sphinx.
-# The format is a list of tuples containing the path and title.
+# The format is a list of tuples containing the PATH and title.
 #epub_pre_files = []
 
 # HTML files shat should be inserted after the pages created by sphinx.
-# The format is a list of tuples containing the path and title.
+# The format is a list of tuples containing the PATH and title.
 #epub_post_files = []
 
 # A list of files that should not be packed into the epub file.

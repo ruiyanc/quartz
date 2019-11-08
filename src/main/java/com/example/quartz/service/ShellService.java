@@ -1,6 +1,6 @@
 package com.example.quartz.service;
 
-import com.example.quartz.demo.JavaShellUtil;
+import com.example.quartz.util.JavaShellUtil;
 import org.springframework.stereotype.Service;
 
 @Service

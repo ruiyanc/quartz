@@ -19,7 +19,7 @@ import java.util.Map;
 @Service
 public class TimeDistributeService {
 
-    public static final String PATH = "/root/testFileinDir/";
+    public static final String PATH = "/HTData/NewFTP/HTTP/";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

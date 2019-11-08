@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -157,12 +158,14 @@ public class HttpJobServiceImpl implements HttpJobService {
 
         try {
             // 调度容器设置JobDetail和Trigger
-            scheduler.scheduleJob(jobDetail, trigger);
+            Date date = scheduler.scheduleJob(jobDetail, trigger);
+            System.out.println(date);
             // 启动
             if (!scheduler.isShutdown()) {
                 scheduler.start();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("Schedule Exception.", e);
         }
 

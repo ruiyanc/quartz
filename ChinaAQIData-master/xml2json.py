@@ -58,7 +58,7 @@ if __name__ == "__main__":
     fc = geojson.FeatureCollection(featList)
     fname = time.strftime("%Y-%m-%d-%H", time.localtime())
     fstr = geojson.dumps(fc, sort_keys=True)
-    fp = open("/root/testFileinDir/%s.json" % fname, "w")
+    fp = open("/HTData/NewFTP/HTTP/%s.json" % fname, "w")
     fp.write(fstr)
     fp.close()
     fp = open("airnow.json", "w")
